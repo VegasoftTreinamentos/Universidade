@@ -169,6 +169,11 @@
     <Compile Include="ViewModels\AccountViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\Amelia\bootstrap-theme.css" />
+    <Content Include="css\Amelia\bootstrap-theme.min.css" />
+    <Content Include="css\Amelia\bootstrap.css" />
+    <Content Include="css\Amelia\bootstrap.min.css" />
+    <Content Include="css\Amelia\theme.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
