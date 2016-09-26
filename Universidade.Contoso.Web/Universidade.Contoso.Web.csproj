@@ -243,6 +243,12 @@
   <ItemGroup>
     <Content Include="Views\Aluno\Index.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Universidade.Contoso.Dominio\Universidade.Contoso.Dominio.csproj">
+      <Project>{45355910-01b3-4b20-8274-6b29c66f139d}</Project>
+      <Name>Universidade.Contoso.Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
