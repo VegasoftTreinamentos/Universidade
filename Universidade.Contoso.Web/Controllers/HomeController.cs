@@ -10,7 +10,10 @@ namespace Universidade.Contoso.Web.Controllers
     {
         public ActionResult Index()
         {
+
+            ViewBag.tema = "_Cyborg";            
             ViewBag.Title = "Universidade";
+            
             return View();
         }
     }

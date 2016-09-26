@@ -1,12 +1,15 @@
 ﻿
 @{
- ViewBag.Title = "Universidade Contoso";
+    ViewBag.Title = "Universidade Contoso";
+    Layout = "~/Views/Shared/" + ViewBag.Tema + ".cshtml";
 }
 
+
 <div class="container jumbotron">
-   
+
     <h2> @ViewBag.Title</h2>
     <h3> @ViewBag.Tema</h3>
     <h4>Prova de Conceito de Asp.net MVC</h4>
 </div>
+
 

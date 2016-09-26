@@ -4,10 +4,12 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-   // ViewBag.Title = "Aluno";
+    // ViewBag.Title = "Aluno";
+    Layout = "~/Views/Shared/" + ViewBag.Tema + ".cshtml";
 }
 <div class="container jumbotron">
     <h2> @ViewBag.Title</h2>
+    <h3> @ViewBag.Tema</h3>
 
 
     <p>
@@ -20,7 +22,7 @@
             <input type="submit" value="Procurar" />
         </p>
     }
-    <table>
+    <table class="table table-bordered table-striped">
         <tr>
             <th></th>
             <th>
