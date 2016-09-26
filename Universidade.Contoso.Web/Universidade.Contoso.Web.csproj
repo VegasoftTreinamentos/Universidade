@@ -294,6 +294,9 @@
     <Content Include="css\Bootstrap\bootstrap-theme.css.map" />
     <Content Include="css\Bootstrap\bootstrap.css.map" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Superhero.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

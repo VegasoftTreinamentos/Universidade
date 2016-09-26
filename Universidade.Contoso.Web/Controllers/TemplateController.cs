@@ -50,7 +50,7 @@ namespace Universidade.Contoso.Web.Controllers
         public ActionResult Bootstrap()
         {
             ViewBag.Title = "Templates Avançado";
-            ViewBag.tema = "_bootstrap";
+            ViewBag.tema = "_layout";
 
             return View("Index");
         }
@@ -63,10 +63,18 @@ namespace Universidade.Contoso.Web.Controllers
             return View("Index");
         }
 
+        public ActionResult Darkly()
+        {
+            ViewBag.Title = "Templates Avançado";
+            ViewBag.tema = "_cosmo";
+
+            return View("Index");
+        }
+
         public ActionResult Superhero()
         {
             ViewBag.Title = "Templates Avançado";
-            ViewBag.tema = "_superhero";
+            ViewBag.tema = "_Superhero";
 
             return View("Index");
         }
