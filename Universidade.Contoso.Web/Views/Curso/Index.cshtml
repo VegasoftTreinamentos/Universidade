@@ -1,9 +1,52 @@
-﻿
+﻿@model IEnumerable<Universidade.Contoso.Dominio.Entidades.Course>
+
 @{
-    ViewBag.Title = "Curso";
+    ViewBag.Title = "Cursos";
 }
 
 <div class="container jumbotron">
-    <h2> @ViewBag.Title</h2>
-</div>
+    <h2>Cursos</h2>
 
+    <p>
+        @Html.ActionLink("Incluir novo", "Create")
+    </p>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Selecione o departamento: @Html.DropDownList("SelectedDepartment", "Todos")
+            <input type="submit" value="Filtrar" />
+        </p>
+    }
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th></th>
+            <th>Número</th>
+            <th>Título</th>
+            <th>Créditos</th>
+            <th>Departamento</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Alterar", "Edit", new { id = item.CourseID }) |
+                    @Html.ActionLink("Detalhe", "Details", new { id = item.CourseID }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.CourseID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Credits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Name)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

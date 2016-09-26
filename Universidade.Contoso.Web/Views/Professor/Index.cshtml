@@ -1,9 +1,121 @@
-﻿
+﻿@model Universidade.Contoso.Web.ViewModels.InstructorIndexData
+
 @{
-    ViewBag.Title = "Professor";
+    ViewBag.Title = "Professores";
 }
 
 <div class="container jumbotron">
-    <h2> @ViewBag.Title</h2>
-</div>
+    <h2>Professores</h2>
 
+    <p>
+        @Html.ActionLink("Incluir Novo", "Create")
+    </p>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th></th>
+            <th>Sobrenome</th>
+            <th>Nome</th>
+            <th>Admissão</th>
+            <th>Campus</th>
+            <th>Disciplinas</th>
+
+        </tr>
+        @foreach (var item in Model.Instructors)
+        {
+            string selectedRow = "";
+            if (item.PersonID == ViewBag.PersonID)
+            {
+                selectedRow = "selectedrow";
+            }
+            <tr class="@selectedRow" valign="top">
+                <td>
+                    @Html.ActionLink("Selecionar", "Index", new { id = item.PersonID }) |
+                    @Html.ActionLink("Alterar", "Edit", new { id = item.PersonID }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.PersonID }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.PersonID })
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+                <td>
+                    @item.FirstMidName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HireDate)
+                </td>
+                <td>
+                    @if (item.OfficeAssignment != null)
+                {
+                        @item.OfficeAssignment.Location
+                    }
+                </td>
+                <td>
+                    @{
+                        foreach (var course in item.Courses)
+                        {
+                            @course.CourseID @:  @course.Title <br />
+                }
+                    }
+                </td>
+
+            </tr>
+                        }
+    </table>
+    @if (Model.Courses != null)
+    {
+        <h3>Disciplinas  ministrados pelo professore selecionado</h3>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th></th>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Departamento</th>
+            </tr>
+
+            @foreach (var item in Model.Courses)
+            {
+                string selectedRow = "";
+                if (item.CourseID == ViewBag.CourseID)
+                {
+                    selectedRow = "selectedrow";
+                }
+                <tr class="@selectedRow">
+                    <td>
+                        @Html.ActionLink("Selecionar", "Index", new { courseID = item.CourseID })
+                    </td>
+                    <td>
+                        @item.CourseID
+                    </td>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.Department.Name
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+    @if (Model.Enrollments != null)
+    {
+        <h3>Alunos matriculados no curso selecionado</h3>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Nome</th>
+                <th>Grau</th>
+            </tr>
+            @foreach (var item in Model.Enrollments)
+            {
+                <tr>
+                    <td>
+                        @item.Student.FullName
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade)
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+</div>

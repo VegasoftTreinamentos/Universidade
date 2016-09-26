@@ -1,8 +1,46 @@
-﻿
+﻿@model IEnumerable<Universidade.Contoso.Dominio.Entidades.Department>
+
 @{
-    ViewBag.Title = "Departamento";
+    ViewBag.Title = "Departamentos";
 }
 <div class="container jumbotron">
-    <h2> @ViewBag.Title</h2>
-</div>
 
+    <h2>Departamentos</h2>
+
+    <p>
+        @Html.ActionLink("incluir novo", "Create")
+    </p>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th></th>
+            <th>Nome</th>
+            <th>Orçamento</th>
+            <th>Data Incial</th>
+            <th>Coordenador</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DepartmentID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DepartmentID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DepartmentID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Budget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Administrator.FullName)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
