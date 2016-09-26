@@ -191,6 +191,10 @@
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\Bootstrap\bootstrap-theme.css" />
+    <Content Include="css\Bootstrap\bootstrap-theme.min.css" />
+    <Content Include="css\Bootstrap\bootstrap.css" />
+    <Content Include="css\Bootstrap\bootstrap.min.css" />
     <Content Include="css\Cyborg\bootstrap-theme.css" />
     <Content Include="css\Cyborg\bootstrap-theme.min.css" />
     <Content Include="css\Cyborg\bootstrap.css" />
@@ -226,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="css\Cosmo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -284,6 +289,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Darkly.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\Bootstrap\bootstrap-theme.css.map" />
+    <Content Include="css\Bootstrap\bootstrap.css.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
