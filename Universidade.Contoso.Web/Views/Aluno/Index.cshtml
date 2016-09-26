@@ -1,9 +1,62 @@
 ﻿
+@model PagedList.IPagedList<Universidade.Contoso.Dominio.Entidades.Student>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 @{
    // ViewBag.Title = "Aluno";
 }
 <div class="container jumbotron">
     <h2> @ViewBag.Title</h2>
+
+
+    <p>
+        @Html.ActionLink("Incluir Novo", "Create")
+    </p>
+    @using (Html.BeginForm("Index", "Student", FormMethod.Get))
+    {
+        <p>
+            Procurar por nome: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Procurar" />
+        </p>
+    }
+    <table>
+        <tr>
+            <th></th>
+            <th>
+                @Html.ActionLink("Sobrenome", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Nome
+            </th>
+            <th>
+                @Html.ActionLink("Data da Matrícula", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Alterar", "Edit", new { id = item.PersonID }) |
+                    @Html.ActionLink("Detalhe", "Details", new { id = item.PersonID }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.PersonID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstMidName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
-
-
