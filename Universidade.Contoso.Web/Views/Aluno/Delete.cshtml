@@ -1,0 +1,46 @@
+﻿@model Universidade.Contoso.Dominio.Entidades.Student
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="container jumbotron">
+    <p class="error">@ViewBag.ErrorMessage</p>
+
+    <h2>Exclusão</h2>
+
+    <h3>Confirma a exclusão?</h3>
+    <fieldset>
+        <legend>Student</legend>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.LastName)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.LastName)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.FirstMidName)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.FirstMidName)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.EnrollmentDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.EnrollmentDate)
+        </div>
+    </fieldset>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <p>
+            <input type="submit" value="Excluir" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </p>
+    }
+
+</div>
