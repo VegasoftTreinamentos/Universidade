@@ -10,8 +10,8 @@ namespace Universidade.Contoso.Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title="Universidade Contoso";
-return View();
+            ViewBag.Title = "Universidade";
+            return View();
         }
     }
 }
