@@ -43,6 +43,9 @@ namespace Universidade.Contoso.Web.Controllers
         {
             ViewBag.Title = "Templates Avançado";
             ViewBag.tema = "_Amelia";
+            HttpCookie cookie = new HttpCookie("UniversidadeContosoTema", "_Amelia");
+            cookie.Expires = DateTime.Now.AddDays(1);
+            Response.Cookies.Add(cookie);
 
             return View("Index");
         }
