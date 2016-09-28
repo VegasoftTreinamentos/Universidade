@@ -14,12 +14,16 @@ namespace Universidade.Contoso.Web.Controllers
     public class ProfessorController : Controller
     {
         private SchoolContext db = new SchoolContext();
+        private string tema = "_Cyborg";
 
         //
         // GET: /Instructor/
 
         public ActionResult Index(int? id, int? courseID)
         {
+            LerCookie();
+            ViewBag.tema = tema;
+
             var viewModel = new InstructorIndexData();
 
             viewModel.Instructors = db.Instructors
@@ -218,6 +222,22 @@ namespace Universidade.Contoso.Web.Controllers
             db.Instructors.Remove(instructor);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        private void LerCookie()
+        {
+            if (!ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("UniversidadeContosoTema"))
+            {
+                HttpCookie cookie = new HttpCookie("UniversidadeContosoTema", tema);
+                cookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(cookie);
+            }
+            else
+            {
+                HttpCookie cookie = HttpContext.Request.Cookies.Get("UniversidadeContosoTema");
+
+                tema = cookie.Value;
+            }
         }
 
         protected override void Dispose(bool disposing)

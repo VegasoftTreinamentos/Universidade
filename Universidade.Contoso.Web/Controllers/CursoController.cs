@@ -13,6 +13,7 @@ namespace Universidade.Contoso.Web.Controllers
     {
 
         private UnitOfWork unitOfWork = new UnitOfWork();
+        private string tema = "_Cyborg";
 
         public ActionResult UpdateCourseCredits(int? multiplier)
         {
@@ -28,6 +29,9 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Index(int? SelectedDepartment)
         {
+            LerCookie();
+            ViewBag.tema = tema;
+
             var departments = unitOfWork.DepartmentRepository.Get(
                 orderBy: q => q.OrderBy(d => d.Name));
             ViewBag.SelectedDepartment = new SelectList(departments, "DepartmentID", "Name", SelectedDepartment);
@@ -136,6 +140,22 @@ namespace Universidade.Contoso.Web.Controllers
             unitOfWork.CourseRepository.Delete(id);
             unitOfWork.Save();
             return RedirectToAction("Index");
+        }
+
+        private void LerCookie()
+        {
+            if (!ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("UniversidadeContosoTema"))
+            {
+                HttpCookie cookie = new HttpCookie("UniversidadeContosoTema", tema);
+                cookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(cookie);
+            }
+            else
+            {
+                HttpCookie cookie = HttpContext.Request.Cookies.Get("UniversidadeContosoTema");
+
+                tema = cookie.Value;
+            }
         }
 
         protected override void Dispose(bool disposing)

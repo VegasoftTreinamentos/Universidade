@@ -39,18 +39,7 @@ namespace Universidade.Contoso.Web.Controllers
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
 
-            if (!ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("UniversidadeContosoTema"))
-            {
-                HttpCookie cookie = new HttpCookie("UniversidadeContosoTema", tema);
-                cookie.Expires = DateTime.Now.AddDays(1);
-                Response.Cookies.Add(cookie);
-            }
-            else
-            {
-                HttpCookie cookie = HttpContext.Request.Cookies.Get("UniversidadeContosoTema");
-
-                tema = cookie.Value;
-            }
+            LerCookie();
             //ViewBag.tema = "_Cyborg";
             ViewBag.tema = tema;
             ViewBag.CurrentSort = sortOrder;
@@ -94,6 +83,22 @@ namespace Universidade.Contoso.Web.Controllers
             int pageNumber = (page ?? 1);
 
             return View(students.ToPagedList(pageNumber, pageSize));
+        }
+
+        private void LerCookie()
+        {
+            if (!ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("UniversidadeContosoTema"))
+            {
+                HttpCookie cookie = new HttpCookie("UniversidadeContosoTema", tema);
+                cookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(cookie);
+            }
+            else
+            {
+                HttpCookie cookie = HttpContext.Request.Cookies.Get("UniversidadeContosoTema");
+
+                tema = cookie.Value;
+            }
         }
 
         public ViewResult Details(int id)
