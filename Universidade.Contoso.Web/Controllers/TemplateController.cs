@@ -8,6 +8,7 @@ namespace Universidade.Contoso.Web.Controllers
 {
     public class TemplateController : Controller
     {
+        private string tema = "_Amelia";
 
         public ActionResult Index()
         {           
@@ -41,19 +42,27 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Amelia()
         {
+           
             ViewBag.Title = "Templates Avançado";
-            ViewBag.tema = "_Amelia";
-            HttpCookie cookie = new HttpCookie("UniversidadeContosoTema", "_Amelia");
-            cookie.Expires = DateTime.Now.AddDays(1);
-            Response.Cookies.Add(cookie);
+            tema = "_Amelia";
+            GravaCookie();
 
             return View("Index");
+        }
+
+        private void GravaCookie()
+        {
+            ViewBag.tema = tema;
+            HttpCookie cookie = new HttpCookie("UniversidadeContosoTema", tema);
+            cookie.Expires = DateTime.Now.AddDays(365);
+            Response.Cookies.Add(cookie);
         }
 
         public ActionResult Bootstrap()
         {
             ViewBag.Title = "Templates Avançado";
-            ViewBag.tema = "_layout";
+            tema = "_Layout";
+            GravaCookie();
 
             return View("Index");
         }
@@ -61,7 +70,8 @@ namespace Universidade.Contoso.Web.Controllers
         public ActionResult Cosmo()
         {
             ViewBag.Title = "Templates Avançado";
-            ViewBag.tema = "_cosmo";
+            tema = "_Cosmo";
+            GravaCookie();
 
             return View("Index");
         }
@@ -69,7 +79,8 @@ namespace Universidade.Contoso.Web.Controllers
         public ActionResult Darkly()
         {
             ViewBag.Title = "Templates Avançado";
-            ViewBag.tema = "_cosmo";
+            tema = "_Darkly";
+            GravaCookie();
 
             return View("Index");
         }
@@ -77,15 +88,16 @@ namespace Universidade.Contoso.Web.Controllers
         public ActionResult Superhero()
         {
             ViewBag.Title = "Templates Avançado";
-            ViewBag.tema = "_Superhero";
-
+            tema = "_Superhero";
+            GravaCookie();
             return View("Index");
         }
 
         public ActionResult Cyborg()
         {
             ViewBag.Title = "Templates Avançado";
-            ViewBag.tema = "_Cyborg";
+            tema = "_Cyborg";
+            GravaCookie();
 
             return View("Index");
         }
