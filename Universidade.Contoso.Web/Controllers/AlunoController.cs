@@ -13,6 +13,7 @@ namespace Universidade.Contoso.Web.Controllers
     public class AlunoController : Controller
     {
         private IStudentRepository studentRepository;
+        private string tema = "_Cyborg";
 
         public AlunoController()
         {
@@ -37,7 +38,21 @@ namespace Universidade.Contoso.Web.Controllers
         // GET: Aluno
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            ViewBag.tema = "_Cyborg";
+
+            if (!ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("UniversidadeContosoTema"))
+            {
+                HttpCookie cookie = new HttpCookie("UniversidadeContosoTema", tema);
+                cookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(cookie);
+            }
+            else
+            {
+                HttpCookie cookie = HttpContext.Request.Cookies.Get("UniversidadeContosoTema");
+
+                tema = cookie.Value;
+            }
+            //ViewBag.tema = "_Cyborg";
+            ViewBag.tema = tema;
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
