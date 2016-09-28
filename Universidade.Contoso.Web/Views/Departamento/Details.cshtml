@@ -1,0 +1,40 @@
+﻿@model Department
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container jumbotron">
+    <h2>Detalhes</h2>
+    <fieldset>
+        <legend>Departmentos</legend>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Budget)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Budget)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.StartDate)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Administrator.LastName)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Administrator.LastName)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Alterar", "Edit", new { id = Model.DepartmentID }) |
+        @Html.ActionLink("Voltar", "Index")
+    </p>
+</div>

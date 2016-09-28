@@ -1,0 +1,48 @@
+﻿@model Universidade.Contoso.Dominio.Entidades.Department
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="container jumbotron">
+    <h2>Exclusão</h2>
+    <p class="error">@ViewBag.ConcurrencyErrorMessage</p>
+    <h3>Confirma a exclusão?</h3>
+    <fieldset>
+        <legend>Departmentos</legend>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Budget)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Budget)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.StartDate)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Administrator.FullName)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Administrator.FullName)
+        </div>
+    </fieldset>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.DepartmentID)
+        @Html.HiddenFor(model => model.RowVersion)
+        <p>
+            <input type="submit" value="Excluir" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </p>
+    }
+</div>

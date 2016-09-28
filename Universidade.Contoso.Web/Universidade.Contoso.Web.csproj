@@ -316,6 +316,25 @@
   <ItemGroup>
     <Content Include="Views\Aluno\Delete.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Curso\Create.cshtml" />
+    <Content Include="Views\Curso\Delete.cshtml" />
+    <Content Include="Views\Curso\Details.cshtml" />
+    <Content Include="Views\Curso\Edit.cshtml" />
+    <Content Include="Views\Curso\UpdateCourseCredits.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Departamento\Create.cshtml" />
+    <Content Include="Views\Departamento\Delete.cshtml" />
+    <Content Include="Views\Departamento\Details.cshtml" />
+    <Content Include="Views\Departamento\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professor\Create.cshtml" />
+    <Content Include="Views\Professor\Delete.cshtml" />
+    <Content Include="Views\Professor\Details.cshtml" />
+    <Content Include="Views\Professor\Edit.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

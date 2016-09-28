@@ -1,0 +1,40 @@
+﻿@model Universidade.Contoso.Dominio.Entidades.Course
+
+@{
+   ViewBag.Title = "Details";
+}
+
+<div class="container jumbotron">
+    <h2>Detalhes</h2>
+    <fieldset>
+        <legend>Curso</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CourseID)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.CourseID)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Title)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Title)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Credits)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Credits)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Department.Name)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Alterar", "Edit", new { id = Model.CourseID }) |
+        @Html.ActionLink("Voltar", "Index")
+    </p>
+</div>
