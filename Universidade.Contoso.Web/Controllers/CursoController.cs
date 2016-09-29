@@ -30,7 +30,7 @@ namespace Universidade.Contoso.Web.Controllers
         public ActionResult Index(int? SelectedDepartment)
         {
             LerCookie();
-            ViewBag.tema = tema;
+          
 
             var departments = unitOfWork.DepartmentRepository.Get(
                 orderBy: q => q.OrderBy(d => d.Name));
@@ -49,6 +49,7 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Details(int id)
         {
+            LerCookie();
             var query = "SELECT * FROM Course WHERE CourseID = @p0";
             return View(unitOfWork.CourseRepository.GetWithRawSql(query, id).Single());
         }
@@ -58,6 +59,7 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Create()
         {
+            LerCookie();
             PopulateDepartmentsDropDownList(3);
             return View(new Course { Credits = 3, Title = "Algebra II", CourseID = 3333 });
         }
@@ -86,6 +88,7 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Edit(int id)
         {
+            LerCookie();
             Course course = unitOfWork.CourseRepository.GetByID(id);
             PopulateDepartmentsDropDownList(course.DepartmentID);
             return View(course);
@@ -125,6 +128,7 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Delete(int id)
         {
+            LerCookie();
             Course course = unitOfWork.CourseRepository.GetByID(id);
             return View(course);
         }
@@ -156,6 +160,8 @@ namespace Universidade.Contoso.Web.Controllers
 
                 tema = cookie.Value;
             }
+
+            ViewBag.tema = tema;
         }
 
         protected override void Dispose(bool disposing)
