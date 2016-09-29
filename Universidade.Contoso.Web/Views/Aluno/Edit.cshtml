@@ -1,10 +1,11 @@
 ﻿@model Universidade.Contoso.Dominio.Entidades.Student
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Alterar";
+    Layout = "~/Views/Shared/" + ViewBag.Tema + ".cshtml";
 }
 <div class="container jumbotron">
-    <h2>Alterar</h2>
+    <h2>@ViewBag.Title</h2>
 
     @using (Html.BeginForm())
     {

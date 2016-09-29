@@ -18,12 +18,15 @@ namespace Universidade.Contoso.Web.Controllers
         public AlunoController()
         {
             this.studentRepository = new StudentRepository(new SchoolContext());
+            
+           
         }
 
 
         public AlunoController(IStudentRepository studentRepository)
         {
             this.studentRepository = studentRepository;
+              
         }
 
 
@@ -38,10 +41,7 @@ namespace Universidade.Contoso.Web.Controllers
         // GET: Aluno
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-
             LerCookie();
-            //ViewBag.tema = "_Cyborg";
-            ViewBag.tema = tema;
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -99,10 +99,13 @@ namespace Universidade.Contoso.Web.Controllers
 
                 tema = cookie.Value;
             }
+
+            ViewBag.tema = tema;
         }
 
         public ViewResult Details(int id)
         {
+            LerCookie();
             Student student = studentRepository.GetStudentByID(id);
             return View(student);
         }
@@ -112,6 +115,7 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Create()
         {
+            LerCookie();
             return View();
         }
 
@@ -144,6 +148,7 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Edit(int id)
         {
+            LerCookie();
             Student student = studentRepository.GetStudentByID(id);
             return View(student);
         }
@@ -177,11 +182,13 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Delete(bool? saveChangesError = false, int id = 0)
         {
+          
             if (saveChangesError.GetValueOrDefault())
             {
                 ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
             Student student = studentRepository.GetStudentByID(id);
+            LerCookie();
             return View(student);
         }
 

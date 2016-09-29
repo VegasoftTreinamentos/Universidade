@@ -2,54 +2,57 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/" + ViewBag.Tema + ".cshtml";
 }
 
-<h2>Detalhes</h2>
+<div class="container jumbotron">
+    <h2>Detalhes</h2>
 
-<fieldset>
-    <legend>Student</legend>
+    <fieldset>
+        <legend>Student</legend>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.LastName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.LastName)
-    </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.LastName)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.LastName)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.FirstMidName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FirstMidName)
-    </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.FirstMidName)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.FirstMidName)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.EnrollmentDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.EnrollmentDate)
-    </div>
-    <div class="display-field">
-        <table>
-            <tr>
-                <th>Course Title</th>
-                <th>Grade</th>
-            </tr>
-            @foreach (var item in Model.Enrollments)
-            {
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.EnrollmentDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.EnrollmentDate)
+        </div>
+        <div class="display-field">
+            <table>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Course.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Grade)
-                    </td>
+                    <th>Course Title</th>
+                    <th>Grade</th>
                 </tr>
-            }
-        </table>
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Alterar", "Edit", new { id = Model.PersonID }) |
-    @Html.ActionLink("Voltar", "Index")
-</p>
+                @foreach (var item in Model.Enrollments)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Course.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Grade)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Alterar", "Edit", new { id = Model.PersonID }) |
+        @Html.ActionLink("Voltar", "Index")
+    </p>
+</div>
