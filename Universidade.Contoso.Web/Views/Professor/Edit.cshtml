@@ -1,7 +1,8 @@
-﻿@model Universidade.Contoso.Dominio.Entidades.Instructor
-
+﻿@using Universidade.Contoso.Web.ViewModels
+@model Universidade.Contoso.Dominio.Entidades.Instructor
 @{
-   ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit";
+   
 }
 
 <div class="container jumbotron">
@@ -45,42 +46,41 @@
             <div class="editor-field">
                 <table>
                     <tr>
-                        @{
-                            int cnt = 0;
-                            List<ContosoUniversity.ViewModels.AssignedCourseData> courses = ViewBag.Courses;
+                    @{
+                        int cnt = 0;
+                        List<AssignedCourseData> courses = ViewBag.Courses;
 
-                            foreach (var course in courses)
+                        foreach (var course in courses)
+                        {
+                            if (cnt++%3 == 0)
                             {
-                                if (cnt++ % 3 == 0)
-                                {
-                                    @:
-                                </tr>
-                                <tr>
-                    }
-                                @:
-                                <td>
-                                    <input type="checkbox"
-                                           name="selectedCourses"
-                                           value="@course.CourseID"
-                                           @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
-                                    @course.CourseID @:  @course.Title
-                                    @:
-                                </td>
-                }
-                            @:
-                        </tr>
-                        }
-                    </table>
-                </div>
-                <p>
-                    <input type="submit" value="Gravar" />
-                </p>
-            </fieldset>
+                                @:</tr> <tr>
                             }
+                            @: <td>
+                            <input type="checkbox"
+                                   name="selectedCourses"
+                                   value="@course.CourseID"
+                                   @(Html.Raw(course.Assigned ? "checked=\"checked\"" : ""))/>
+                            @course.CourseID
+                            @: @course.Title
+                            @:</td>
+                        }
+                        @: </tr >
+                    }
+                </table>
+            </div>
+
+            <p><input type="submit" value="Gravar"/>
+            </p>
+
+        </fieldset>
+    }
     <div>
         @Html.ActionLink("Voltar", "Index")
     </div>
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
