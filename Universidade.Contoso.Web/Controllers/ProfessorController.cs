@@ -22,7 +22,7 @@ namespace Universidade.Contoso.Web.Controllers
         public ActionResult Index(int? id, int? courseID)
         {
             LerCookie();
-            ViewBag.tema = tema;
+         
 
             var viewModel = new InstructorIndexData();
 
@@ -64,6 +64,7 @@ namespace Universidade.Contoso.Web.Controllers
             {
                 return HttpNotFound();
             }
+            LerCookie();
             return View(instructor);
         }
 
@@ -72,6 +73,7 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Create()
         {
+            LerCookie();
             ViewBag.PersonID = new SelectList(db.OfficeAssignments, "PersonID ", "Location");
             return View();
         }
@@ -99,6 +101,7 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Edit(int id)
         {
+            LerCookie();
             Instructor instructor = db.Instructors
                 .Include(i => i.OfficeAssignment)
                 .Include(i => i.Courses)
@@ -132,6 +135,7 @@ namespace Universidade.Contoso.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, FormCollection formCollection, string[] selectedCourses)
         {
+
             var instructorToUpdate = db.Instructors
                 .Include(i => i.OfficeAssignment)
                 .Include(i => i.Courses)
@@ -198,6 +202,7 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Delete(int id = 0)
         {
+            LerCookie();
             Instructor instructor = db.Instructors.Find(id);
             if (instructor == null)
             {
@@ -238,6 +243,8 @@ namespace Universidade.Contoso.Web.Controllers
 
                 tema = cookie.Value;
             }
+
+            ViewBag.tema = tema;
         }
 
         protected override void Dispose(bool disposing)

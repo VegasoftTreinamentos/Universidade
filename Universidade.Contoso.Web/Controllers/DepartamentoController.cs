@@ -45,7 +45,7 @@ namespace Universidade.Contoso.Web.Controllers
         public ActionResult Index()
         {
             LerCookie();
-            ViewBag.tema = tema;
+         
 
             var departments = db.Departments.Include(d => d.Administrator);
             return View(departments.ToList());
@@ -61,6 +61,8 @@ namespace Universidade.Contoso.Web.Controllers
             {
                 return HttpNotFound();
             }
+            LerCookie();
+
             return View(department);
         }
 
@@ -69,6 +71,8 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Create()
         {
+            LerCookie();
+
             ViewBag.PersonID = new SelectList(db.Instructors, "PersonID", "FullName",
                db.Instructors.Single(i => i.LastName == "Fakhouri").PersonID);
             return View(new Department { Budget = 5000.00M, Name = "Computer Science", StartDate = DateTime.Now });
@@ -102,6 +106,8 @@ namespace Universidade.Contoso.Web.Controllers
             {
                 return HttpNotFound();
             }
+            LerCookie();
+
             ViewBag.PersonID = new SelectList(db.Instructors, "PersonID", "FullName", department.PersonID);
             return View(department);
         }
@@ -167,6 +173,8 @@ namespace Universidade.Contoso.Web.Controllers
 
         public ActionResult Delete(int id, bool? concurrencyError)
         {
+            LerCookie();
+
             Department department = db.Departments.Find(id);
 
             if (concurrencyError.GetValueOrDefault())
@@ -230,6 +238,8 @@ namespace Universidade.Contoso.Web.Controllers
 
                 tema = cookie.Value;
             }
+
+            ViewBag.tema = tema;
         }
 
         protected override void Dispose(bool disposing)
